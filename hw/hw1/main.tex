@@ -284,7 +284,22 @@ $J = || A - Z^{T}WZ||_2$
 \subsection{BONUS: Relation to eigen-decomposition (3 points)}
 Recall eigen-decomposition of a matrix (\href{https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix}{link}). What would be the condition of W, such that the matrix factorization in the previous question (2.2) is equivalent to learning the eigen-decomposition of matrix A?
 
-\Solution{}
+\Solution{
+The eigen-decomposition of matrix A is given by the equation: \\
+\\
+$A$ = $PΛP^{-1}$ \\
+Where:\\
+- $P$ is a matrix whose columns are eigenvectors of $A$\\
+-$Λ$ is the diagonal matrix whose diagonal entries are the corresponding eigenvalues\\\\
+
+For the matrix factorization in 2.2 to be equivalent to learning the eigen-decomposition, the bilinear form needs to capture the spectral properties of $A$. For this to occur the condition will need to be:\\
+- $W$ will be the diagonal matrix ($Λ$), with the diagonal elements equal to the eigenvalues of $A$\\
+- $Z$ contains the eigenvectors of $A$, ($Z=P$)\\
+\\
+These conditions being satisified would yield $Z^{T}WZ$ = $PΛP^{-1}$ for $A$. This would allow for the objective function to minimize the difference between $A$ and its spectral decomposition.
+
+
+}
 
 \subsection{Multi-hop node similarity (3 points)}
 Define node similarity with the multi-hop definition: 2 nodes are similar if they are connected by at least one path of length at most k, where k is a parameter (e.g. $k = 2$). Suppose that we use the same encoder (embedding lookup) and decoder (inner product) as before. What would be the corresponding matrix factorization problem we want to solve?
