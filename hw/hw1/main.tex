@@ -85,7 +85,26 @@ to compute node embeddings for the 2 red nodes respectively. Note that the 2 red
 
 .\\
 
-\Solution{}
+\Solution{3 layers of message passing are needed so that the two nodes can be distinguished. This is do to the affect of the neighborhood around node 6. Node 6 on the right graph increases the sum aggregation at a greater rate than on the left, as it has more direct neighbors. This takes a few rounds to have an affect, as the sum aggregation operation uses the previous layer to calculate the next layer. I've included a table below that shows my calculations for the red node on each side at each layer.
+\begin{table}[h]
+\centering
+\color{red} \caption{Sum Aggregation values per layer of red nodes}
+\label{tab:my_table}
+\color{red}\begin{tabular}{|c|c|c|}
+\hline
+ & Left Red Node & Right Red Node \\
+\hline
+Layer 0 & 1 & 1 \\
+\hline
+Layer 1 & 2 & 2 \\
+\hline
+Layer 2 & 6 & 6 \\
+\hline
+Layer 3 & 18 & 19 \\
+\hline
+\end{tabular}
+\end{table}
+}
 
 \subsection{Random Walk Matrix (4 points)}
 
@@ -102,7 +121,37 @@ Consider the graph shown below (figure~\ref{fig:Q4.2}).
   \label{fig:Q4.2}
 \end{figure}
 
-\Solution{}
+\Solution{
+For this question I set the nodes column wise aligning to Markov matrix as they take column vectors. I also assumed that each stage would have the same probabilities for the creation of the matrix i.e. Node 3 would have a 1/3 probability of reaching node 1, 2, or 4 as there are 3 choices. The following is the matrix with columns for the nodes:
+\[
+\begin{bmatrix}
+0 & 0.5 & 1/3 & 0 \\
+0.5 & 0 & 1/3 & 0 \\
+0.5 & 0.5 & 0 & 0 \\
+0 & 0 & 1/3 & 0 \\
+\end{bmatrix}
+\]
+
+For the limiting distribution r, I calculated the eigenvector of M using the following set of linear equations:
+\\
+
+\hspace{2cm}(1) $r_1$ + $r_2$ + $r_3$ + $r_4$ = 1
+
+\hspace{2cm}(2) $-r_1$ + $0.5r_2$ + $1/3r_3$ = 0
+
+\hspace{2cm}(3) $0.5r_1$ - $r_2$ + $1/3r_3$ = 0
+
+\hspace{2cm}(4) $0.5r_1$ + $0.5r_2$ - $r_3$ + $r_4$ = 0
+
+\hspace{2cm}(5) $1/3r_3$ - $r_4$ = 0
+\\
+
+This set of equations ultimately gave me the following distribution:
+\\
+
+\hspace{2cm}$r$ = [ 0.25, 0.25, 0.375, 0.125]
+
+}
 
 
 \subsection{Relation to Random Walk (i) (4 points)}
@@ -252,7 +301,13 @@ and/or edge) in one graph which is not present in the other.
         \label{fig:my_label2}
     \end{figure}
 
-\Solution{}
+\Solution{
+Yes these 2 graphs are isomorphic. I've redrawn and compared the nodes for equivalence. See the following picture and node breakdown:
+\begin{figure}[H]
+        \centering
+\centering \includegraphics[width=0.5\textwidth]{CS224W_Homework1/node_mapping.jpg}
+        \end{figure}
+}
 
 
 \subsection{Aggregation Choice (3 points)} 
@@ -268,7 +323,24 @@ we use sum aggregation.\\
 \textbf{Hint:} Your node features can be scalars rather than vectors, i.e. one dimensional node features instead of n-dimensional. Also, You are free to arbitrarily choose the number of nodes (e.g. 3 nodes), their connections (i.e. edges between
 nodes) in your example.
 
-\Solution{}
+\Solution{\\I've defined 2 graphs $G_1$ and $G_2$ in the attached image below. The graphs have the will be compared around node $A$, as they have the same starting embedding. As implemented below, the max and mean are equal for node $A$ in each graph; however, the sums are different.
+\\\\
+\hspace{2cm}$G_1$: $h^{(0)}_{A}$ = 1, $h^{(0)}_{B}$ = 4, $h^{(0)}_{C}$ = 4
+\\
+\hspace{2cm} Max Aggregate: $h^{(1)}_{A}$ = max(4,4) = 4\\
+\hspace{2cm} Mean Aggregate: $h^{(1)}_{A}$ = mean(4,4) = 4        \\
+\hspace{2cm} Sum Aggregate: $h^{(1)}_{A}$ = sum(4,4) = 8           \\\\
+\hspace{2cm}$G_2$: $h^{(0)}_{A}$ = 1, $h^{(0)}_{B}$ = 4, $h^{(0)}_{C}$ = 4, $h^{(0)}_{D}$ = 4
+\\
+\hspace{2cm} Max Aggregate: $h^{(1)}_{A}$ = max(4,4,4) = 4\\
+\hspace{2cm} Mean Aggregate: $h^{(1)}_{A}$ = mean(4,4,4) = 4        \\
+\hspace{2cm} Sum Aggregate: $h^{(1)}_{A}$ = sum(4,4,4) = 12           \\\\
+\begin{figure}[H]
+        \centering
+\centering \includegraphics[width=0.5\textwidth]{CS224W_Homework1/graph_aggregate.jpg}
+        \end{figure}
+
+}
 
 
 \subsection{Weisfeiler-Lehman Test (6 points)}
