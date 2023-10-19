@@ -427,7 +427,6 @@ nodes) in your example.
         \centering
 \centering \includegraphics[width=0.5\textwidth]{CS224W_Homework1/graph_aggregate.jpg}
         \end{figure}
-
 }
 
 
@@ -450,7 +449,24 @@ Note: The proof has to be generic to any AGGREGATE, COMBINE, READOUT functions. 
 
 \textbf{Hint:} You can use proof by contradiction by first assuming that \textit{Weisfeiler-Lehman} test cannot decide whether $G_1$ and $G_2$ are isomorphic at the end of $K$’th iteration.
 
-\Solution{}
+\Solution{
+\\
+\textbf{PROOF}
+\\
+\\
+Assume for contradiction that the Weisfeiler-Lehman (WL) test cannot decide whether G1 and G2 are isomorphic after $K$ iterations, indicating their label sets are the same after $K$ iterations. Also in this situation, assume that our nueral model determines that $$\operatorname { READOUT }\left(\left\{h_v^{(K)}, \forall v \in V_1\right\}\right) \neq \operatorname { READOUT }\left(\left\{h_v^{(K)}, \forall v \in V_2\right\}\right),$$, meaning $G_1$ and $G_2$ are not isomorphic.
+\\\\
+For the GNN, the embeddings of each node at the $k$th iteration depend on its previous embeddings combined with the embeddings of its neighbors. Using the same $AGGREGATE$ and $COMBINE$ functions on both graphs, the model collects embeddings from neighbors and combines them with its own to produce the new embedding
+\\\\
+In the case of the WL test applied to the same two graphs, it updates the label of each node at the $k$th iteration based on its previous label and the multi-set in sorted order of labels of its neighbors. The main idea of this approach is to establish a signature for each node in the graph based on the neighborhood around the node, and these signatures can then be used to determine to find similarity between nodes in both graphs (isomorphism check). \\\\
+
+Note: This process between the two methods is virtually the same. If $G_1$ and $G_2$ produce the same label sets for each of their nodes at the end of $K$ iterations in the WL test, then the information in the aggregation in the nueral model and the WL test would be equivalent.\\\\
+
+Highlighting this connection and similarity in approaches/processes the contradiction assumption above defines a situation where the neural model determines $G1$ and $G2$ to be non-isomorphic. This essentially means that the nueral model found some dissimilarity after $K$ iterations, however the WL test found them to be indistinguishable from one another. This contradiction, weighed against the breakdown of process, implies that the initial assumption that the WL test cannot decide whether the two graphs are isomporphic is incorrect.If the neural model can determine that they are non-isomorphic after $K$ iterations, so must the WL test.Essentially, if the neural model determines non-isomorphic, the WL test will determine the same for a set of graphs. \\\\
+
+One final note in this as well, the "at most" piece. The WL test forms a multiset where frequency and labels are important. These sets are then hashed providing unique labels for unique multisets. This process of multiset hashing preserves potentially more information than aggregating and combining. As an example, if an aggregate averages neighboring embeddings, it may lose insight into specific counts or distinct embeddings. The combine function then merges this aggregation, which depending on design, could further abstract or contribute to data loss. Essentially this proves that the neural model is at most as powerful as the WL test.
+
+}
 
 
 \end{document}
