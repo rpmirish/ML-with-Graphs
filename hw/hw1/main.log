@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.10.18)  19 OCT 2023 03:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.10.18)  19 OCT 2023 17:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -846,124 +846,229 @@ Underfull \hbox (badness 10000) in paragraph at lines 154--154
 
  []
 
-[5 <./CS224W_Homework1/fig4-2.png>] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 200--203
+[5 <./CS224W_Homework1/fig4-2.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 179--179
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 204--207
+Underfull \hbox (badness 10000) in paragraph at lines 179--179
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 179--179
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 200--200
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 200--200
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 200--200
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 200--200
+
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 226--226
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 226--226
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 226--226
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 232--242
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 232--242
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 232--242
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 232--242
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
 
  []
 
 [8]
-<CS224W_Homework1/fig5.png, id=157, 439.6425pt x 226.8475pt>
+Underfull \hbox (badness 10000) in paragraph at lines 256--259
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 260--263
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 280--280
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 280--280
+
+ []
+
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 298--298
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 298--298
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 298--298
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 301--311
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 301--311
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 301--311
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 301--311
+
+ []
+
+[10]
+<CS224W_Homework1/fig5.png, id=165, 439.6425pt x 226.8475pt>
 File: CS224W_Homework1/fig5.png Graphic file (type png)
 <use CS224W_Homework1/fig5.png>
-Package pdftex.def Info: CS224W_Homework1/fig5.png  used on input line 245.
+Package pdftex.def Info: CS224W_Homework1/fig5.png  used on input line 314.
 (pdftex.def)             Requested size: 207.0021pt x 106.8087pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 250--251
+Underfull \hbox (badness 10000) in paragraph at lines 323--323
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 250--251
+Underfull \hbox (badness 10000) in paragraph at lines 323--323
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 250--251
+Underfull \hbox (badness 10000) in paragraph at lines 325--326
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 250--251
-
- []
-
-[9 <./CS224W_Homework1/fig5.png>]
-<CS224W_Homework1/fig1.png, id=166, 281.05pt x 131.49126pt>
-File: CS224W_Homework1/fig1.png Graphic file (type png)
-<use CS224W_Homework1/fig1.png>
-Package pdftex.def Info: CS224W_Homework1/fig1.png  used on input line 302.
-(pdftex.def)             Requested size: 172.5pt x 80.70511pt.
- [10]
-<CS224W_Homework1/node_mapping.jpg, id=172, 1469.49pt x 1842.885pt>
-File: CS224W_Homework1/node_mapping.jpg Graphic file (type jpg)
-<use CS224W_Homework1/node_mapping.jpg>
-Package pdftex.def Info: CS224W_Homework1/node_mapping.jpg  used on input line 
-312.
-(pdftex.def)             Requested size: 172.5pt x 216.32811pt.
-
-Overfull \hbox (20.09096pt too wide) detected at line 322
-[][]
- []
-
-[11 <./CS224W_Homework1/fig1.png> <./CS224W_Homework1/node_mapping.jpg>]
-<CS224W_Homework1/graph_aggregate.jpg, id=178, 1531.7225pt x 2171.11125pt>
-File: CS224W_Homework1/graph_aggregate.jpg Graphic file (type jpg)
-<use CS224W_Homework1/graph_aggregate.jpg>
-Package pdftex.def Info: CS224W_Homework1/graph_aggregate.jpg  used on input li
-ne 345.
-(pdftex.def)             Requested size: 172.5pt x 244.48795pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 345--345
+Underfull \hbox (badness 10000) in paragraph at lines 325--326
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 345--345
+Underfull \hbox (badness 10000) in paragraph at lines 325--326
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 345--345
+Underfull \hbox (badness 10000) in paragraph at lines 325--326
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 345--345
+[11 <./CS224W_Homework1/fig5.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 336--336
 
  []
 
 [12]
-<CS224W_Homework1/algo-3.png, id=184, 887.315pt x 370.38374pt>
+<CS224W_Homework1/fig1.png, id=178, 281.05pt x 131.49126pt>
+File: CS224W_Homework1/fig1.png Graphic file (type png)
+<use CS224W_Homework1/fig1.png>
+Package pdftex.def Info: CS224W_Homework1/fig1.png  used on input line 388.
+(pdftex.def)             Requested size: 172.5pt x 80.70511pt.
+ [13]
+<CS224W_Homework1/node_mapping.jpg, id=185, 1469.49pt x 1842.885pt>
+File: CS224W_Homework1/node_mapping.jpg Graphic file (type jpg)
+<use CS224W_Homework1/node_mapping.jpg>
+Package pdftex.def Info: CS224W_Homework1/node_mapping.jpg  used on input line 
+398.
+(pdftex.def)             Requested size: 172.5pt x 216.32811pt.
+
+Overfull \hbox (20.09096pt too wide) detected at line 408
+[][]
+ []
+
+[14 <./CS224W_Homework1/fig1.png> <./CS224W_Homework1/node_mapping.jpg>]
+<CS224W_Homework1/graph_aggregate.jpg, id=191, 1531.7225pt x 2171.11125pt>
+File: CS224W_Homework1/graph_aggregate.jpg Graphic file (type jpg)
+<use CS224W_Homework1/graph_aggregate.jpg>
+Package pdftex.def Info: CS224W_Homework1/graph_aggregate.jpg  used on input li
+ne 431.
+(pdftex.def)             Requested size: 172.5pt x 244.48795pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 431--431
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 431--431
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 431--431
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 431--431
+
+ []
+
+[15]
+<CS224W_Homework1/algo-3.png, id=197, 887.315pt x 370.38374pt>
 File: CS224W_Homework1/algo-3.png Graphic file (type png)
 <use CS224W_Homework1/algo-3.png>
-Package pdftex.def Info: CS224W_Homework1/algo-3.png  used on input line 353.
+Package pdftex.def Info: CS224W_Homework1/algo-3.png  used on input line 439.
 (pdftex.def)             Requested size: 345.0pt x 144.00824pt.
- [13 <./CS224W_Homework1/graph_aggregate.jpg> <./CS224W_Homework1/algo-3.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 361--362
+ [16 <./CS224W_Homework1/graph_aggregate.jpg> <./CS224W_Homework1/algo-3.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 447--448
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 363--364
+Underfull \hbox (badness 10000) in paragraph at lines 449--450
 
  []
 
-[14] (main.aux)
+[17] (main.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-10-10>
@@ -972,13 +1077,13 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: EB7BB91C16664C3A33627CC0DA3E493F;5195.
  ) 
 Here is how much of TeX's memory you used:
- 21618 strings out of 474824
- 402081 string characters out of 5750976
+ 21626 strings out of 474824
+ 402189 string characters out of 5750976
  1934043 words of memory out of 5000000
- 43151 multiletter control sequences out of 15000+600000
- 567212 words of font info for 71 fonts, out of 8000000 for 9000
+ 43155 multiletter control sequences out of 15000+600000
+ 567812 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,10n,89p,843b,520s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,10n,89p,1078b,520s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\rpmir\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
 1000.pk><C:/Users/rpmir/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmbx10.pfb><C:/Users/rpmir/AppData/Local/Programs/MiKTeX/fonts/type1/publ
@@ -1000,9 +1105,9 @@ rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/rpmir/AppData
 /Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/rpmi
 r/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
 
-Output written on main.pdf (14 pages, 1611108 bytes).
+Output written on main.pdf (17 pages, 1625472 bytes).
 PDF statistics:
- 282 PDF objects out of 1000 (max. 8388607)
- 43 named destinations out of 1000 (max. 500000)
+ 294 PDF objects out of 1000 (max. 8388607)
+ 46 named destinations out of 1000 (max. 500000)
  218 words of extra memory for PDF output out of 10000 (max. 10000000)
 
