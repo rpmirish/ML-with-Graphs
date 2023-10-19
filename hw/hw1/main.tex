@@ -205,7 +205,9 @@ In the simple matrix factorization, the objective is to approximate adjacency ma
 \\
 In the encoder-decoder perspective of node embeddings, what is the decoder? (Please provide a mathematical expression for the decoder)
 
-\Solution{}
+\Solution{In the encoder-decoder perspective of node embeddings, the encoder maps each node to a vector in the embedding space. The decoder then takes these embeddings and reconstructs the weights/similarity between nodes as represented in the adjacency matrix. Given two nodes with embeddings $z_i$ and $z_j$, the decoder produces and approximate entry in the adjacency matrix. Ultimately this is the dot product of nodes in the embedding space to approximate the adjacency matrix.
+\\
+\( A_ij \approx D(z_i,z_j) \) = $z_i^Tz_j$}
 
 
 
