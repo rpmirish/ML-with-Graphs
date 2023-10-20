@@ -186,10 +186,9 @@ $$h^{(l+1)}_i = \frac{1}{2}h^{(l)}_i + \frac{1}{2}\frac{1}{|N_i|} \sum_{j \in N_
 What is the new corresponding transition matrix?
 
 \Solution{
-Given the above updated agreggation function, with the skip connection a node not only transitions to its neighbors, but also stays with half the probability. The probability for a node to stay is 1/2, and to transition to a neighbor is 1/2 * $1/degree(i)$. It adds a self-loop to each node that will pass a message to itself along with its neighbors. The new transition matrix $T{'}$ is as follows:
+Given the above updated agreggation function,  the skip connection affects not only a node's transitions to its neighbors, but also if it stays at itself. The probability for a node to stay is 1/2, and to transition to a neighbor is 1/2 * $1/degree(i)$. It adds a self-loop to each node that will pass a message to itself along with its neighbors. The new transition matrix $T{'}$ is as follows:
 \\
 \\
-
 $T{'}$ = $\frac{1}{2}$$I$ + $\frac{1}{2}$$D^{-1}$$A$
 \\
 \\
@@ -214,14 +213,14 @@ Over-smoothing thus refers to the problem of node embedding convergence. Namely,
 \Solution{
 
 The aggregation function from question 1.3 states that the new embedding of node $i$ is the average of its neighbors embeddings. Repeated application of this function will result in a node's embedding depending on embeddings of nodes further away from it.\\\\
-Relating this to Markov Convergence Theorem, the aggregation scheme can be described by a Markov chain. The steps in the aggregation function relates to a step in a random walk, which defines a Markov chain where the probability of transitioning from node $i$ to node $j$ is $\frac{1}{N_i}$ if $j$ is a neighbor of $i$ and 0 if not. As stated above we can assume that the graph is connected, has no bipartite components, is undirected, and Markov chains have 2 distinct properties in this context:
+Relating this to Markov Convergence Theorem, the aggregation scheme can be described by a Markov chain. The steps in the aggregation function relates to a step in a random walk, which defines a Markov chain where the probability of transitioning from node $i$ to node $j$ is $\frac{1}{N_i}$ if $j$ is a neighbor of $i$ and 0 if not. As stated above we can assume that the graph is connected, has no bipartite components, is undirected. Markov chains have 2 distinct properties in this context:
 \\
 \\
 1. Irreducible: A Markov chain is irreducible if there's a non-zero probability of getting from any state to any other state in a finite series of steps. The graph as stated above is connected, which meets this criteria
-\\
-2. Aperiodic: As defined above the graph is undirected and has no bipartite components. Thusly,it is aperiodic - there are no integer $k$ > 1 that divides the length of every cyvle of the graph. Conversely, if the graph were directed and bipartite, all cycles would have a length that is divisible by 2, and thusly, they cannot be aperiodic.
 \\\\
-An irreducible and aperiodic chain has a unique stationary distribution to which it will converge on. Since the above aggregate function is described by a Markov Chain with the properties listed above, as $l \rightarrow \infty$ the embeddings will converge to a stationary distribution, which will result in them become more similar to one another, and result in them being indistinguishable from one another. Given a deep enough architecture, this behavior will cause and "Over-Smoothing" effect, which leads to the loss of node-specific information.
+2. Aperiodic: As defined above the graph is undirected and has no bipartite components. Thusly,it is aperiodic - there are no integer $k$ $>$ 1 that divides the length of every cyvle of the graph. Conversely, if the graph were directed and bipartite, all cycles would have a length that is divisible by 2, and thusly, not aperiodic.
+\\\\
+An irreducible and aperiodic chain has a unique stationary distribution to which it will converge on. Since the above aggregate function is described by a Markov Chain with the properties listed above, as $l \rightarrow \infty$ the embeddings will converge to a stationary distribution, which will result in them become more similar to one another, and result in them being indistinguishable from one another. Given a deep enough architecture, this behavior will cause an "Over-Smoothing" effect, which leads to the loss of node-specific information.
 
 }
 
@@ -243,7 +242,7 @@ $h^{(l+1)}_u =
 1 & \text{if } A(u) = 1 \text{ and } h^{(l)}_u = 0 \\
 h^{(l)}_u & \text{otherwise}
 \end{cases}$ \\
-- The update rule has the embeddeding node $u$ at layer $l+1$ set to 1 if: the aggregated message function return is 1, at least one of it's neighbors was visited in a prior layer, AND the current state of the node hasn't been visited. If the conditions are not met, then the embedding maintains the same as prior layers. Starting from the source node, nodes will get visited similar to the BFS algorithm: marking nodes as visited in the next layer if the node is adjacent to an already visited node.
+- The update rule has the embedding node $u$ at layer $l+1$ set to 1 when the aggregated message function return is 1 (at least one of it's neighbors was visited in a prior layer) AND the current state of the node hasn't been visited. If the conditions are not met, then the embedding maintains the same as prior layers. Starting from the source node, nodes will get visited similar to the BFS algorithm: marking nodes as visited in the next layer if the node is adjacent to an already visited node.
 
 }
 
@@ -270,7 +269,7 @@ In the encoder-decoder perspective of node embeddings, what is the decoder? (Ple
 \subsection{Alternate matrix factorization (3 points)}
 In linear algebra, we define bilinear form as $z_i^T W z_j$, where W is a matrix. Suppose that we define the decoder as the bilinear form, what would be the objective function for the corresponding matrix factorization? (Assume that the $W$ matrix is fixed)
 
-\Solution{ Leveraging the matrix notation of the optimization objective in 2.1, the adjusted objective function that meets this definition would be as follows:\\
+\Solution{ Leveraging the matrix notation of the optimization objective in 2.1, the adjusted objective function that meets this definition would be as follows for objective function $J$:\\
 
 $J = || A - Z^{T}WZ||_2$
 \\\\
@@ -284,28 +283,23 @@ $J = || A - Z^{T}WZ||_2$
 \subsection{BONUS: Relation to eigen-decomposition (3 points)}
 Recall eigen-decomposition of a matrix (\href{https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix}{link}). What would be the condition of W, such that the matrix factorization in the previous question (2.2) is equivalent to learning the eigen-decomposition of matrix A?
 
-\Solution{
-The eigen-decomposition of matrix A is given by the equation: \\
+\Solution{The eigen-decomposition of matrix A is given by the equation: \\
 \\
-$A$ = $PΛP^{-1}$ \\
+$A$ = $P$$\Lambda$$P^{-1}$ \\
 Where:\\
 - $P$ is a matrix whose columns are eigenvectors of $A$\\
--$Λ$ is the diagonal matrix whose diagonal entries are the corresponding eigenvalues\\\\
-
+- $\Lambda$ is the diagonal matrix whose diagonal entries are the corresponding eigenvalues\\\\
 For the matrix factorization in 2.2 to be equivalent to learning the eigen-decomposition, the bilinear form needs to capture the spectral properties of $A$. For this to occur the condition will need to be:\\
-- $W$ will be the diagonal matrix ($Λ$), with the diagonal elements equal to the eigenvalues of $A$\\
+- $W$ will be the diagonal matrix ($\Lambda$), with the diagonal elements equal to the eigenvalues of $A$\\
 - $Z$ contains the eigenvectors of $A$, ($Z=P$)\\
 \\
-These conditions being satisified would yield $Z^{T}WZ$ = $PΛP^{-1}$ for $A$. This would allow for the objective function to minimize the difference between $A$ and its spectral decomposition.
-
-
-}
+These conditions being satisified would yield $Z^{T}WZ$ = $P$$\Lambda$$P^{-1}$ for $A$. This would allow for the objective function to minimize the difference between $A$ and its spectral decomposition.}
 
 \subsection{Multi-hop node similarity (3 points)}
 Define node similarity with the multi-hop definition: 2 nodes are similar if they are connected by at least one path of length at most k, where k is a parameter (e.g. $k = 2$). Suppose that we use the same encoder (embedding lookup) and decoder (inner product) as before. What would be the corresponding matrix factorization problem we want to solve?
 
 \Solution{
-For a single hop, the adjacency matrix $A$ defines the relationships between nodes as 1 if nodes are directly connected and 0 otherwise. For Multi-hop connections, we can raise the matrix to the power of $k$ which will capture all paths of length up to $k$. If there's one path of length up to $k$ between nodes, then the entry will be non-zero.\\
+For a single hop, the adjacency matrix $A$ defines the relationships between nodes as 1 if nodes are directly connected and 0 otherwise. For Multi-hop connections, we can raise the matrix to the power of $k$ which will capture all paths of length up to $k$. If there's one path of length up to $k$ between nodes, then the entry will be non-zero. Multi-hop objective function $J$ defined below: \\
 
 $J = \sum_{(i,j)}(A^k - z_i^{T}z_j)^2$
 \\\\
@@ -333,7 +327,7 @@ Characterize the vector representations (i.e. the embedding space) of the 10-nod
 
 \Solution{
 
-Node2vec's intent is to capture node embeddings via biased random walks. Looking at the barbell figure and running node2vec on it will result in it assign different embeddings for each of the 10 node cliques. This is due to node2vec capturing aspects of the local neighborhood due to the structure of its random walks.\\\\ The global structure of the graph will be poorly reflected due to the distance separation between the barbells. When Node2vec is run on the graph, nodes within each clique will be likely to have similar embeddings, as any node in the clique is a single step from another node. The chaining of the two cliques with the middle section in the graph introduces distance and variance in the random walk neighborhood, which will likely yield differences in the embeddings between the two cliques. \\\\Ultimately, this means that even though the structures of the 2 10-node cliques are identical, node2vec will assign them different embeddings, and might not represent the structural similarity of the graph due to the walk-based distance/proximity.
+Node2vec's intent is to capture node embeddings via biased random walks. Looking at the barbell figure and running node2vec on it will result in it assigning different embeddings for each of the 10 node cliques. This is due to node2vec capturing aspects of the local neighborhood due to the structure of its random walks.\\\\ The global structure of the graph will be poorly reflected due to the distance separation between the barbells. When Node2vec is run on the graph, nodes within a single clique will be likely to have similar embeddings, as any node in the clique is a single step from another node. The chaining of the two cliques with the middle section in the graph introduces distance and variance in the random walk neighborhood, which will likely yield differences in the embeddings between the two cliques. \\\\Ultimately, this means that even though the structures of the 2 10-node cliques are similar/identical, node2vec will assign them different embeddings, and might not represent the structural similarity of the graph due to the walk-based distance/proximity.
 
 }
 
@@ -343,10 +337,10 @@ In the above figure \ref{fig:10-node}, suppose you arrive at node w. What are th
 
 \Solution{
 \\
-Node2vec:\\
-- When at node $w$ in the node2vec algorithm you can reach any node that is directly connected to $w$ by an edge. Looking at the graph, this indicates you'd be able to reach the green node, and any blue node in the rightmost clique.\\\\
-Struct2vec:\\
-- When at node $w$, struct2vec has the ability to form a new clique graphy where any two nodes are connnected by an edges whose weight is equal to the structural similarity between them. Given $g_k(u,v) > 0$ for any $u,v,k$, every node has some level of similarity with every other node. Struct2vec would technically allow you to reach any node in the graph after a step as they are all connected in the clique graph it forms. It incorporates the global structural context of the graph.
+\textbf{Node2vec}:\\
+- When positioned at node $w$ in the node2vec algorithm, you can reach any node that is directly connected to $w$ by an edge. Looking at the graph, this indicates you'd be able to reach the green node, and any blue node in the rightmost clique.\\\\
+\textbf{Struct2vec}:\\
+- When at positioned node $w$, struct2vec has the ability to form a new clique graph where any two nodes are connnected by an edges whose weight is equal to the structural similarity between them. Given $g_k(u,v) > 0$ for any $u,v,k$, every node has some level of similarity with every other node. Struct2vec would technically allow you to reach any node in the graph after a step as they are all connected in the clique graph it forms. It incorporates the global structural context of the graph.
 
 }
 
@@ -354,14 +348,14 @@ Struct2vec:\\
 Why is it necessary to consider different $g_k$'s during the random walk?
 
 \Solution{
-Considering different $g_k$'s allows for the potential for enriched embeddings. They can capture various local structural properties of the graph at different scales/distances. For example, adjusting the values could enable the algorithm to measure direct neighbors at one layer, while the next may be neighbors of neighbors. Contrasting the scales allows for a richer set of structural features. It could also assist in lower the impact of local noise or irregularities in the local neighborhoods. Finally, it could increase the diversity sampling a broader specturm of structural information, again potentially enhancing the quality of the embeddings. The main impact of considering different $g_k$'s is the ability to yield more informative and versatile embeddings.
+Considering different $g_k$'s allows for the potential for enriched embeddings. They can capture various local structural properties of the graph at different scales/distances. For example, adjusting the values could enable the algorithm to measure direct neighbors at one layer, while the next may be neighbors of neighbors. Contrasting the scales allows for a richer set of structural features. It could also assist in lowering the impact of local noise or irregularities in the local neighborhoods. Finally, it could increase the diversity sampling a broader specturm of structural information, again potentially enhancing the quality of the embeddings. The main impact of considering different $g_k$'s is the ability to yield more informative and versatile embeddings.
 }
 
 \subsection{node2vec \& struct2vec (iv) (3 points)}
 Characterize the vector representations (i.e. the embedding space) of the two 10-node cliques after running the struct2vec algorithm on the graph in the above figure (Figure \ref{fig:10-node}).
 
 \Solution{
-Given that each clique is structurally similar (same local neighborhood), nodes within each of the 2 10-node cliques will have embeddings that are very close to each other in the embedding space. This is due to struct2vec considering their structural roles to be identical or very similar. The exact positioning and differentiation in the embedding space will be influenced by the selected $g_k$ functions and their effects on different structural scales.
+Given that each clique is structurally similar (same local neighborhood), nodes within each of the 2 10-node cliques will have embeddings that are very close to each other in the embedding space. This is due to struct2vec considering their structural roles to be identical or very similar. The  positioning in the embedding space will be influenced by the selected $g_k$ functions and their effects on the embeddings; however, as stated before nodes from each 10-node click will be in close proximity in the embedding space.
 }
 
 
@@ -426,7 +420,7 @@ we use sum aggregation.\\
 \textbf{Hint:} Your node features can be scalars rather than vectors, i.e. one dimensional node features instead of n-dimensional. Also, You are free to arbitrarily choose the number of nodes (e.g. 3 nodes), their connections (i.e. edges between
 nodes) in your example.
 
-\Solution{\\I've defined 2 graphs $G_1$ and $G_2$ in the attached image below. The graphs have the will be compared around node $A$, as they have the same starting embedding. As implemented below, the max and mean are equal for node $A$ in each graph; however, the sums are different.
+\Solution{\\I've defined 2 graphs $G_1$ and $G_2$ in the attached image below. The graphs are compared around node $A$, as they have the same starting embedding. As implemented below, the max and mean are equal for node $A$ in each graph; however, the sums are different.
 \\\\
 \hspace{2cm}$G_1$: $h^{(0)}_{A}$ = 1, $h^{(0)}_{B}$ = 4, $h^{(0)}_{C}$ = 4
 \\
@@ -442,6 +436,7 @@ nodes) in your example.
         \centering
 \centering \includegraphics[width=0.5\textwidth]{CS224W_Homework1/graph_aggregate.jpg}
         \end{figure}
+
 }
 
 
@@ -454,6 +449,7 @@ Our isomorphism-test algorithm is known to be at most as powerful as the well-kn
         \label{fig:my_label}
     \end{figure}
 
+
     Prove that our neural model is at most as powerful as the WL test. More precisely, let $G_1$ and $G_2$ be non-isomorphic, and suppose that their node embeddings are updated over $K$ iterations with the same $\operatorname{AGGREGATE}(\cdot)$ and $\operatorname{COMBINE}(\cdot)$ functions. Show that if
 
     $$\operatorname { READOUT }\left(\left\{h_v^{(K)}, \forall v \in V_1\right\}\right) \neq \operatorname { READOUT }\left(\left\{h_v^{(K)}, \forall v \in V_2\right\}\right),$$
@@ -464,24 +460,21 @@ Note: The proof has to be generic to any AGGREGATE, COMBINE, READOUT functions. 
 
 \textbf{Hint:} You can use proof by contradiction by first assuming that \textit{Weisfeiler-Lehman} test cannot decide whether $G_1$ and $G_2$ are isomorphic at the end of $K$’th iteration.
 
-\Solution{
-\\
+\Solution{\\
 \textbf{PROOF}
 \\
 \\
-Assume for contradiction that the Weisfeiler-Lehman (WL) test cannot decide whether G1 and G2 are isomorphic after $K$ iterations, indicating their label sets are the same after $K$ iterations. Also in this situation, assume that our nueral model determines that $$\operatorname { READOUT }\left(\left\{h_v^{(K)}, \forall v \in V_1\right\}\right) \neq \operatorname { READOUT }\left(\left\{h_v^{(K)}, \forall v \in V_2\right\}\right),$$, meaning $G_1$ and $G_2$ are not isomorphic.
+Assume for contradiction that the Weisfeiler-Lehman (WL) test cannot decide whether G1 and G2 are isomorphic after $K$ iterations, indicating their label sets are the same after $K$ iterations. Also in this situation, assume that our nueral model determines that $$\operatorname { READOUT }\left(\left\{h_v^{(K)}, \forall v \in V_1\right\}\right) \neq \operatorname { READOUT }\left(\left\{h_v^{(K)}, \forall v \in V_2\right\}\right),$$\\ meaning $G_1$ and $G_2$ are not isomorphic.
 \\\\
-For the GNN, the embeddings of each node at the $k$th iteration depend on its previous embeddings combined with the embeddings of its neighbors. Using the same $AGGREGATE$ and $COMBINE$ functions on both graphs, the model collects embeddings from neighbors and combines them with its own to produce the new embedding
+For the GNN, the embeddings of each node at the $k$th iteration depend on its previous embeddings combined with the embeddings of its neighbors. Using the same $AGGREGATE$ and $COMBINE$ functions on both graphs, the model collects embeddings from neighbors and combines them with its own to produce the new embeddings.
 \\\\
-In the case of the WL test applied to the same two graphs, it updates the label of each node at the $k$th iteration based on its previous label and the multi-set in sorted order of labels of its neighbors. The main idea of this approach is to establish a signature for each node in the graph based on the neighborhood around the node, and these signatures can then be used to determine to find similarity between nodes in both graphs (isomorphism check). \\\\
+In the case of the WL test applied to the same two graphs, it updates the label of each node at the $k$th iteration based on its previous label and the multi-set in sorted order of labels of its neighbors. The main idea of this approach is to establish a signature for each node in the graph based on the neighborhood around the node, and these signatures can then be used to find similarity between nodes in both graphs (isomorphism check). \\\\
 
 Note: This process between the two methods is virtually the same. If $G_1$ and $G_2$ produce the same label sets for each of their nodes at the end of $K$ iterations in the WL test, then the information in the aggregation in the nueral model and the WL test would be equivalent.\\\\
 
-Highlighting this connection and similarity in approaches/processes the contradiction assumption above defines a situation where the neural model determines $G1$ and $G2$ to be non-isomorphic. This essentially means that the nueral model found some dissimilarity after $K$ iterations, however the WL test found them to be indistinguishable from one another. This contradiction, weighed against the breakdown of process, implies that the initial assumption that the WL test cannot decide whether the two graphs are isomporphic is incorrect.If the neural model can determine that they are non-isomorphic after $K$ iterations, so must the WL test.Essentially, if the neural model determines non-isomorphic, the WL test will determine the same for a set of graphs. \\\\
+Highlighting this connection and similarity in approach/process the contradiction assumption above defines a situation where the neural model determines $G1$ and $G2$ to be non-isomorphic. This essentially means that the nueral model found some dissimilarity after $K$ iterations, however the WL test found them to be indistinguishable from one another. This contradiction states that the initial assumption that the WL test cannot decide whether the two graphs are isomporphic is incorrect.If the neural model can determine that the two graphs are non-isomorphic after $K$ iterations, so must the WL test. Essentially, if the neural model determines non-isomorphic, the WL test will determine the same for a set of graphs. \\\\
 
-One final note in this as well, the "at most" piece. The WL test forms a multiset where frequency and labels are important. These sets are then hashed providing unique labels for unique multisets. This process of multiset hashing preserves potentially more information than aggregating and combining. As an example, if an aggregate averages neighboring embeddings, it may lose insight into specific counts or distinct embeddings. The combine function then merges this aggregation, which depending on design, could further abstract or contribute to data loss. Essentially this proves that the neural model is at most as powerful as the WL test.
-
-}
+One final note in this as well, the "at most" piece. The WL test forms a multiset where frequency and labels are important. These sets are then hashed providing unique labels for unique multisets. This process of multiset hashing preserves potentially more information than aggregating and combining. As an example, if an aggregate averages neighboring embeddings, it may lose insight into specific counts or distinct embeddings. The combine function then merges this aggregation, which depending on design, could further abstract or contribute to data loss. Essentially this proves that the neural model is at most as powerful as the WL test.}
 
 
 \end{document}
